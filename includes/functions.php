@@ -7,9 +7,22 @@ class Wall_Updates {
 
     
      // Updates   	
-	  public function Updates($uid) 
+	  public function Updates($uid , $group_id = 0) 
 	{
-	    $query = mysql_query("SELECT M.msg_id, M.uid_fk, M.message, M.created, U.username FROM messages M, users U  WHERE M.uid_fk=U.uid and M.uid_fk='$uid' order by M.msg_id desc ") or die(mysql_error());
+              
+            $sql = "SELECT M.msg_id, M.uid_fk, M.message, M.created, U.username FROM messages M, users U 
+                                        WHERE M.uid_fk=U.uid
+                                        AND M.group_id = ";
+            
+                                        if( isset($group_id))
+                                        {
+                                            $sql .= mysql_real_escape_string($group_id);
+                                        }
+                                        else{
+                                            $sql .= '0';
+                                        }
+                    "order by M.msg_id desc "; 
+	    $query = mysql_query($sql) or die(mysql_error());
          while($row=mysql_fetch_array($query))
 		$data[]=$row;
 	    return $data;
@@ -35,8 +48,8 @@ class Wall_Updates {
 	   if(!empty($row))
 	   {
 	    $email=$row['email'];
-        $lowercase = strtolower($email);
-        $imagecode = md5( $lowercase );
+            $lowercase = strtolower($email);
+            $imagecode = md5( $lowercase );
 		$data="http://www.gravatar.com/avatar.php?gravatar_id=$imagecode";
 		return $data;
          }
@@ -48,17 +61,23 @@ class Wall_Updates {
 	}
 	
 	//Insert Update
-	public function Insert_Update($uid, $update) 
+	public function Insert_Update($uid, $update, $group_id = 0) 
 	{
 	$update=htmlentities($update);
 	   $time=time();
 	   $ip=$_SERVER['REMOTE_ADDR'];
-        $query = mysql_query("SELECT msg_id,message FROM `messages` WHERE uid_fk='$uid' order by msg_id desc limit 1") or die(mysql_error());
+        $query = mysql_query("SELECT msg_id,message FROM `messages` WHERE uid_fk='$uid' 
+            
+                                    order by msg_id desc limit 1") or die(mysql_error());
         $result = mysql_fetch_array($query);
 		
         if ($update!=$result['message']) {
-            $query = mysql_query("INSERT INTO `messages` (message, uid_fk, ip,created) VALUES ('$update', '$uid', '$ip','$time')") or die(mysql_error());
-            $newquery = mysql_query("SELECT M.msg_id, M.uid_fk, M.message, M.created, U.username FROM messages M, users U where M.uid_fk=U.uid and M.uid_fk='$uid' order by M.msg_id desc limit 1 ");
+            $query = mysql_query("INSERT INTO `messages` (message, uid_fk, ip,created,group_id) VALUES ('$update', '$uid', '$ip','$time','$group_id')") or die(mysql_error());
+            $newquery = mysql_query("SELECT M.msg_id, M.uid_fk, M.message, M.created, U.username 
+                                            FROM messages M, users U 
+                                                WHERE M.uid_fk=U.uid and M.uid_fk='".mysql_real_escape_string($uid)."' 
+                                                AND M.group_id = '".mysql_real_escape_string($group_id)."'
+                                                    ORDER BY M.msg_id desc limit 1 ");
             $result = mysql_fetch_array($newquery);
 			 return $result;
         } 

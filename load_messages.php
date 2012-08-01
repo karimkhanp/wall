@@ -22,7 +22,16 @@ $(document).ready(function(){$("#stexpand<?php echo $msg_id;?>").oembed("<?php e
 <img src="<?php echo $face;?>" class='big_face'/>
 </div> 
 <div class="sttext">
-<a class="stdelete" href="#" id="<?php echo $msg_id;?>" title="Delete update">X</a>
+
+<?php
+   
+    if( $uid == $data['uid_fk'])
+    {
+?>
+        <a class="stdelete" href="#" id="<?php echo $msg_id;?>" title="Delete update">X</a>
+<?php
+    }
+?>
 <b><?php echo $username;?></b> <?php echo $message;?>
 <div class="sttime"><?php time_stamp($time);?> | <a href='#' class='commentopen' id='<?php echo $msg_id;?>' title='Comment'>Comment </a></div> 
 
@@ -41,9 +50,7 @@ $(document).ready(function(){$("#stexpand<?php echo $msg_id;?>").oembed("<?php e
 
 </div>
 <div class="commentupdate" style='display:none' id='commentbox<?php echo $msg_id;?>'>
-<div class="stcommentimg">
-<img src="<?php echo $face;?>" class='small_face'/>
-</div> 
+
 <div class="stcommenttext" >
 <form method="post" action="">
 

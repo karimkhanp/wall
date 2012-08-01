@@ -4,38 +4,56 @@
 $(document).ready(function() 
 {
 // Update Status
-$(".update_button").click(function() 
+$(".update_button ,.update_private_button").click(function() 
 {
-var updateval = $("#update").val();
-var dataString = 'update='+ updateval;
-if(updateval=='')
-{
-alert("Please Enter Some Text");
-}
-else
-{
-$("#flash").show();
-$("#flash").fadeIn(400).html('Loading Update...');
-$.ajax({
-type: "POST",
-url: "message_ajax.php",
-data: dataString,
-cache: false,
-success: function(html)
-{
-$("#flash").fadeOut('slow');
-$("#content").prepend(html);
-$("#update").val('');	
-$("#update").focus();
+    
+    var updateval = $(this).parent().find("textarea").val();
+   
+    var dataString =  updateval;
+    var $groupId = ($(this).prev().val());
+    if($groupId){
+        
+    }
+    
+    if(updateval=='')
+    {
+        if($(".private").find('textarea').val() == ''){
 
-    	
+            alert("Please Enter Some Text");
+        }
+    }
 
-$("#stexpand").oembed(updateval);
-  }
- });
-}
-return false;
-	});
+    else
+    {
+      
+        $update = ($(this).closest("#wall_container").find("#content"));
+        
+        $("#flash").show();
+        $("#flash").fadeIn(400).html('Loading Update...');
+        $.ajax({
+                type: "POST",
+                url: "message_ajax.php",
+                data:{
+                        update:dataString,
+                        group_id : $groupId
+                } ,
+                
+                cache: false,
+                success: function(html)
+                {
+                    $("#flash").fadeOut('slow');
+                    $update.prepend(html);
+                    $update.val('');	
+                    $update.focus();
+
+
+
+                    $("#stexpand").oembed(updateval);
+          }
+         });
+        }
+        return false;
+});
 	
 //commment Submint
 
@@ -112,7 +130,8 @@ url: "delete_message_ajax.php",
 data: dataString,
 cache: false,
 success: function(html){
- $("#stbody"+ID).slideUp();
+    
+    $("#stbody"+ID).slideUp();
  }
  });
 }

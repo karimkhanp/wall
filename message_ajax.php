@@ -11,7 +11,12 @@ $Wall = new Wall_Updates();
 if(isSet($_POST['update']))
 {
 $update=$_POST['update'];
-$data=$Wall->Insert_Update($uid,$update);
+if(isset($_POST['group_id'])){
+    $data = $Wall->Insert_Update($uid , $update, (int) $_POST['group_id'] );
+}else{
+    $data = $Wall->Insert_Update($uid , $update );
+}
+   
 
 if($data)
 {

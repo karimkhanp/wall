@@ -30,9 +30,12 @@ $com_id=$cdata['com_id'];
 <img src="<?php echo $cface; ?>" class='small_face'/>
 </div> 
 <div class="stcommenttext">
-<a class="stcommentdelete" href="#" id='<?php echo $com_id; ?>'>X</a>
-<b><?php echo $username; ?></b> <?php echo $comment; ?>
-<div class="stcommenttime"><?php time_stamp($time); ?></div> 
+    
+    
+    <a class="stcommentdelete" href="#" id='<?php echo $com_id; ?>'>X</a>
+
+    <b><?php echo $username; ?></b> <?php echo $comment; ?>
+    <div class="stcommenttime"><?php time_stamp($time); ?></div> 
 </div>
 </div>
 <?php

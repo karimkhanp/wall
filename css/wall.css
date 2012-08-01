@@ -177,3 +177,6 @@ font-size:11px;
 color:#333;
 
 }
+.private{
+    border: 1px solid red;
+}

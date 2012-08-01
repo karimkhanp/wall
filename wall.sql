@@ -93,3 +93,6 @@ CREATE TABLE IF NOT EXISTS `users` (
 INSERT INTO `users` (`uid`, `username`, `password`, `email`) VALUES
 (1, 'Srinivas', 'aaa', 'srinivas@inbox.com'),
 (2, '9lessons', 'test', 'egglabs@gmail.com');
+
+ALTER TABLE `messages`
+	CHANGE COLUMN `group_id` `group_id` INT(2) NULL DEFAULT '0' AFTER `created`;
