@@ -7,7 +7,7 @@
 <?php echo $error;?>
 
 <?php 
-    for( $i = 0; $i <= 5; $i++){
+    for( $i = 0; $i <= 0; $i++){
 ?>
 <h2>
     Editing field no: <?php echo $i; ?>
@@ -17,7 +17,7 @@
         echo form_open_multipart('upload/do_upload')
 ;?> 
             <input type="hidden" name="id" value="<?php echo $i?>">
-            <input type="file" name="post_image_<?php echo $i?>" size="20" />
+            <input type="file" name="userfile" size="2 000 000" />
             <br />
                 <input type="text" name="Post_title" />
             <br />

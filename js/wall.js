@@ -93,7 +93,7 @@ var ID = $(this).attr("id");
 $("#commentbox"+ID).slideToggle('slow');
 return false;
 });	
-//$('.commentopen').trigger("click");
+$('.commentopen').trigger("click");
 // delete comment
 $('.stcommentdelete').live("click",function() 
 {

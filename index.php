@@ -51,7 +51,7 @@ $updatesarray = $Wall->Updates($uid);
                     <form method="post" action="">
                         <textarea cols="30" rows="1" name="update" id="update" maxlength="200" ></textarea>
                         <br />
-                        <input type="submit" class="btn"  value=" Update "  id="update_button"  class="update_button"/>
+                        <input type="submit" class="btn update_button"  value=" Update "  id="update_button"  />
                     </form>
                 </div>
                 <div id='flashmessage'>
@@ -69,7 +69,7 @@ $updatesarray = $Wall->Updates($uid);
                             <textarea cols="30" rows="1" name="update" id="update" maxlength="200" ></textarea>
                             <br />
                             <input type="hidden" id="group_id" name="group_id" value="<?php echo $group_id ?>">
-                            <input type="submit"  value=" Update "  class="btn" id="update_private_button"  class="update_button"/>
+                            <input type="submit"  value=" Update "  class="btn update_private_button" id="update_private_button"  class="update_button"/>
                         </form>
                     </div>
                 <div id='flashmessage'>

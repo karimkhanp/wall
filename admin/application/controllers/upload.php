@@ -24,7 +24,7 @@ class Upload extends CI_Controller {
 	{   
                 
                 
-		$config['upload_path'] = '../uploads/';
+		$config['upload_path'] = './uploads/';
 		$config['allowed_types'] = 'gif|jpg|png';
 		$config['max_size']	= '1000000';
 		$config['max_width']  = '1024';
@@ -34,8 +34,9 @@ class Upload extends CI_Controller {
                 
                 $this->upload->initialize($config);
 
-		if ( ! $this->upload->do_upload() or FALSE)
+		if ( ! $this->upload->do_upload() )
 		{
+                    var_dump($imgData = $this->upload->data());die();
 			$error = array('error' => $this->upload->display_errors());
 
 			$this->load->view('upload_form', $error);
