@@ -8,8 +8,7 @@ foreach($updatesarray as $data)
     $message = tolink(htmlentities($data['message']));
      $time = $data['created'];
       $username = $data['username'];
-    $uid = $data['uid_fk'];
-    $face = $Wall->Gravatar($uid);
+      $face = $Wall->Gravatar($data['uid_fk']);
     $commentsarray = $Wall->Comments($msg_id);
 ?>
 
@@ -24,7 +23,7 @@ $(document).ready(function(){$("#stexpand<?php echo $msg_id;?>").oembed("<?php e
 <div class="sttext">
 
 <?php
-   
+
     if( $uid == $data['uid_fk'])
     {
 ?>
@@ -56,7 +55,7 @@ $(document).ready(function(){$("#stexpand<?php echo $msg_id;?>").oembed("<?php e
 
 <textarea name="comment" class="comment" maxlength="200"  id="ctextarea<?php echo $msg_id;?>"></textarea>
 <br />
-<input type="submit"  value=" Comment "  id="<?php echo $msg_id;?>" class="comment_button"/>
+<input type="submit"  value="Publisher" class="btn"  id="<?php echo $msg_id;?>" class="comment_button"/>
 </form>
 
 

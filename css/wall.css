@@ -177,3 +177,23 @@ font-size:11px;
 color:#333;
 
 }
+#myTab{
+    margin: 1em;
+}
+#myTab li a{
+     color: black;
+     border-radius: 0px;
+     border: 0px;
+     background: url("./img/grey.jpg") repeat scroll 0 0 transparent;
+     line-height: 3px;
+     margin: 0px;
+     font-size: 0.85em;
+}
+#myTab li{
+     border: 1px solid #a8a8a8;
+     border-bottom: 1px solid #D0D0D0;
+}
+#myTab li.active{
+    border:1px solid #dcdcdc;
+    border-bottom: 1px solid white;
+}

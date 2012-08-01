@@ -3,7 +3,7 @@ if( 'DEVELOPMENT' ){
     
     error_reporting(E_ALL &&  !E_DEPRECATED);
     ini_set('display_errors', TRUE);
-    var_dump($_POST);
+    //var_dump($_POST);
     
 }
 else{
@@ -28,7 +28,7 @@ $updatesarray = $Wall->Updates($uid);
 
         
        <?php
-       include_once 'includes/script_loader.php';
+            include_once 'includes/script_loader.php';
        ?>
     </head>
     
@@ -49,9 +49,9 @@ $updatesarray = $Wall->Updates($uid);
             <div id="wall_container">
                 <div id="updateboxarea">
                     <form method="post" action="">
-                        <textarea cols="30" rows="4" name="update" id="update" maxlength="200" ></textarea>
+                        <textarea cols="30" rows="1" name="update" id="update" maxlength="200" ></textarea>
                         <br />
-                        <input type="submit"  value=" Update "  id="update_button"  class="update_button"/>
+                        <input type="submit" class="btn"  value=" Update "  id="update_button"  class="update_button"/>
                     </form>
                 </div>
                 <div id='flashmessage'>
@@ -66,10 +66,10 @@ $updatesarray = $Wall->Updates($uid);
              <div id="wall_container" class="private">
                     <div id="updateboxarea">
                         <form method="post" action="">
-                            <textarea cols="30" rows="4" name="update" id="update" maxlength="200" ></textarea>
+                            <textarea cols="30" rows="1" name="update" id="update" maxlength="200" ></textarea>
                             <br />
                             <input type="hidden" id="group_id" name="group_id" value="<?php echo $group_id ?>">
-                            <input type="submit"  value=" Update "  id="update_private_button"  class="update_button"/>
+                            <input type="submit"  value=" Update "  class="btn" id="update_private_button"  class="update_button"/>
                         </form>
                     </div>
                 <div id='flashmessage'>

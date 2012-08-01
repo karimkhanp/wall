@@ -60,31 +60,32 @@ $(".update_button ,.update_private_button").click(function()
 $('.comment_button').live("click",function() 
 {
 
-var ID = $(this).attr("id");
+    var ID = $(this).attr("id");
 
-var comment= $("#ctextarea"+ID).val();
-var dataString = 'comment='+ comment + '&msg_id=' + ID;
+    var comment= $("#ctextarea"+ID).val();
+    var dataString = 'comment='+ comment + '&msg_id=' + ID;
 
-if(comment=='')
-{
-alert("Please Enter Comment Text");
-}
-else
-{
-$.ajax({
-type: "POST",
-url: "comment_ajax.php",
-data: dataString,
-cache: false,
-success: function(html){
-$("#commentload"+ID).append(html);
-$("#ctextarea"+ID).val('');
-$("#ctextarea"+ID).focus();
- }
- });
-}
-return false;
+    if(comment=='')
+    {
+    alert("Please Enter Comment Text");
+    }
+    else
+    {
+    $.ajax({
+    type: "POST",
+    url: "comment_ajax.php",
+    data: dataString,
+    cache: false,
+    success: function(html){
+    $("#commentload"+ID).append(html);
+    $("#ctextarea"+ID).val('');
+    $("#ctextarea"+ID).focus();
+     }
+     });
+    }
+    return false;
 });
+
 // commentopen 
 $('.commentopen').live("click",function() 
 {
@@ -92,7 +93,7 @@ var ID = $(this).attr("id");
 $("#commentbox"+ID).slideToggle('slow');
 return false;
 });	
-
+//$('.commentopen').trigger("click");
 // delete comment
 $('.stcommentdelete').live("click",function() 
 {
