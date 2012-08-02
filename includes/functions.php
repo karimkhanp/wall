@@ -1,7 +1,24 @@
 <?php
 //Srinivas Tamada http://9lessons.info
 //Wall_Updates
-
+class Box{
+    
+    public function get_box( $where = '%', $limit = 1){
+        
+         $sql = "SELECT * from post WHERE post_class like '". mysql_real_escape_string( $where ) ."'";
+                "ORDER BY id";
+                
+        $query = mysql_query($sql) or die(mysql_error());
+        
+         while($row = mysql_fetch_object($query)){
+		$data[] = $row;
+	    
+         }   
+        return $data;
+    }
+            
+                                     
+}
 class Wall_Updates {
 
 

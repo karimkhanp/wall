@@ -11,7 +11,7 @@
 
 
 
-<p><?php echo anchor('', 'Back!','class="btn"'); ?></p>
-
+<p><?php  echo anchor('', 'Back!','class="btn"'); ?></p>
+    <?php redirect('')?>
 </body>
 </html>

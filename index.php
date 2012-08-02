@@ -19,7 +19,10 @@ include_once 'session.php';
 $Wall = new Wall_Updates();
 $updatesarray = $Wall->Updates($uid);
 
-$boxes = new Box();
+$box = new Box();
+$top_boxes = $box->get_box('top');
+
+
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -35,7 +38,22 @@ $boxes = new Box();
     </head>
     
 <body>
-    
+    <div id="boxes_top">
+        <ul class="thumbnails">
+        <?php foreach($top_boxes as $top) {?>
+                
+                <li class="span4">
+                    <div class="thumbnail">
+                        <h5> <?= $top->post_title ?>  </h5>
+                        <img src="./admin/<?= $top->post_image?>" alt="">
+                        <p>     <?= $top->post_content ?></p>
+                        <a>     <?= $top->post_link ?></a>
+                    </div>
+                </li>
+        <? } ?>       
+        </ul>
+            
+    </div>
      <ul class="nav nav-tabs" id="myTab">
         <li class="active">
             <a href="#home" data-toggle="tab" >Company</a>
@@ -87,7 +105,24 @@ $boxes = new Box();
             </div>
         </div>
     </div>
-     
+    <?php
+        $boxes = new Box(); 
+        $bottom_boxes = $boxes->get_box('bottom'); 
+    ?>
+       <div id="boxes_bottom">
+        <ul class="thumbnails span8 offset3">
+        <?php foreach($bottom_boxes as $bottom) {?>
+                
+                <li class="one-third">
+                    <div class="thumbnail">
+                        <img src="./admin/<?= $bottom->post_image?>" alt="">
+                        <h5> <?= $bottom->post_title ?>  </h5>
+                        <p>  <?= $bottom->post_content ?></p>
+                        <a> <?= $bottom->post_link?></a>
+                    </div>
+                </li>
+        <? } ?>       
+        </ul> 
     <script>
         jQuery(function () {
             jQuery('#myTab a:last').tab('show');

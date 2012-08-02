@@ -48,6 +48,12 @@ class Upload extends CI_Controller {
 		{
 			 $imgData = $this->upload->data();
                          
+                         // for bottom containers generate smaller icons
+                         
+                         if( (int)$_POST['id'] >= 2){
+                             $thumbSize = 22;
+                         }
+                                                      
                         //Image and thumbnail config
                         $this->configImg['source_image']  =       $imgData['full_path'];
                         $this->configImg['new_image']  =          $imgData['file_path'];
