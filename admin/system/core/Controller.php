@@ -51,6 +51,23 @@ class CI_Controller {
 		$this->load->initialize();
 		
 		log_message('debug', "Controller Class Initialized");
+                if (defined('ENVIRONMENT'))
+                {
+                        switch (ENVIRONMENT)
+                        {
+                                case 'development':
+                                       $this->output->enable_profiler(TRUE);
+                                break;
+
+                                case 'testing':
+                                case 'production':
+                                        error_reporting(0);
+                                break;
+
+                                default:
+                                        exit('The application environment is not set correctly.');
+                        }
+                }
 	}
 
 	public static function &get_instance()

@@ -18,6 +18,8 @@ include_once 'session.php';
 
 $Wall = new Wall_Updates();
 $updatesarray = $Wall->Updates($uid);
+
+$boxes = new Box();
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -45,7 +47,7 @@ $updatesarray = $Wall->Updates($uid);
     </ul>
      
     <div class="tab-content">
-        <div class="tab-pane active" id="home">
+        <div class="tab-pane  active" id="home">
             <div id="wall_container">
                 <div id="updateboxarea">
                     <form method="post" action="">
@@ -62,7 +64,7 @@ $updatesarray = $Wall->Updates($uid);
                 </div>
             </div>
         </div>
-        <div class="tab-pane" id="group">
+        <div class="tab-pane fade" id="group">
              <div id="wall_container" class="private">
                     <div id="updateboxarea">
                         <form method="post" action="">

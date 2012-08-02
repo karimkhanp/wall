@@ -1,8 +1,9 @@
 <?php
 
 class Upload extends CI_Controller {
-        private $imagesFolder;
-        private $imagesURL;
+    
+       private $imagesFolder;
+       private $imagesURL;
        
        private $thumbFolder;
        public $config =    array(); 
@@ -16,19 +17,21 @@ class Upload extends CI_Controller {
 
 	function index()
 	{
-            
-                $this->load->view('upload_form', array('error' => ' ' ));
+                $this->load->model('post_model');
+                $data['post'] = $this->post_model->get_all();
+                //if post is set load data to the form
+                $this->load->view( 'upload_form', $data );
 	}
 
-	function do_upload( $thumbSize = 150)
+	function do_upload( $thumbSize = 75)
 	{   
                 
                 
 		$config['upload_path'] = './uploads/';
 		$config['allowed_types'] = 'gif|jpg|png';
 		$config['max_size']	= '1000000';
-		$config['max_width']  = '1024';
-		$config['max_height']  = '768';
+		$config['max_width']  = '4048';
+		$config['max_height']  = '4048';
                 
 		$this->load->library('upload', $config);
                 
@@ -36,16 +39,15 @@ class Upload extends CI_Controller {
 
 		if ( ! $this->upload->do_upload() )
 		{
-                    var_dump($imgData = $this->upload->data());die();
-			$error = array('error' => $this->upload->display_errors());
-
-			$this->load->view('upload_form', $error);
+                          $this->load->model('post_model');  
+			  $this->post_model->insert();
+                          $this->load->view('upload_success');;
                         
 		}
 		else
 		{
 			 $imgData = $this->upload->data();
-             
+                         
                         //Image and thumbnail config
                         $this->configImg['source_image']  =       $imgData['full_path'];
                         $this->configImg['new_image']  =          $imgData['file_path'];
@@ -67,11 +69,12 @@ class Upload extends CI_Controller {
                             //save the data to the database
                             $this->load->model('post_model');
                             $this->imagesURL    =  $imgData['file_path'];//path described by URL  
-                            $adminPath = $config['upload_path'].$imgData['file_name'];
-                            
-                         
+                            //construct path to the thumbnail  for ex. ./uploadsfloder/imagename_thumbprefix.jpg
+                            $adminPath = $config['upload_path'].$imgData['raw_name'].$this->configImg['thumb_marker'].$imgData['file_ext'];
                             $this->post_model->insert( $adminPath );
                             $this->load->view('upload_success');
+                                             
+                         
                         }
                     }
             }

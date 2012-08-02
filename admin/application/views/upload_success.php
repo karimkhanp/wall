@@ -1,14 +1,17 @@
 <html>
 <head>
+    
 <title>Upload Form</title>
+
 </head>
 <body>
 
-<h3>Your file was successfully uploaded!</h3>
+
+<h3>Your changes are saved</h3>
 
 
 
-<p><?php echo anchor('upload', 'Upload Another File!'); ?></p>
+<p><?php echo anchor('', 'Back!','class="btn"'); ?></p>
 
 </body>
 </html>
