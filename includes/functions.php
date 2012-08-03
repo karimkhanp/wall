@@ -27,7 +27,7 @@ class Wall_Updates {
 	  public function Updates($uid , $group_id = 0) 
 	{
               
-            $sql = "SELECT M.msg_id, M.uid_fk, M.message, M.created, U.username FROM messages M, users U 
+            $sql = "SELECT M.msg_id, M.uid_fk, M.message, M.created, U.username, U.email FROM messages M, users U 
                                         WHERE M.uid_fk=U.uid
                                         AND M.group_id = ";
             
@@ -48,7 +48,7 @@ class Wall_Updates {
 	//Comments
 	   public function Comments($msg_id) 
 	{
-	    $query = mysql_query("SELECT C.com_id, C.uid_fk, C.comment, C.created, U.username FROM comments C, users U WHERE C.uid_fk=U.uid and C.msg_id_fk='$msg_id' order by C.com_id asc ") or die(mysql_error());
+	    $query = mysql_query("SELECT C.com_id, C.uid_fk, C.comment, C.created, U.username, U.email FROM comments C, users U WHERE C.uid_fk=U.uid and C.msg_id_fk='$msg_id' order by C.com_id asc ") or die(mysql_error());
 	   while($row=mysql_fetch_array($query))
 	    $data[]=$row;
         if(!empty($data))
@@ -90,7 +90,7 @@ class Wall_Updates {
 		
         if ($update!=$result['message']) {
             $query = mysql_query("INSERT INTO `messages` (message, uid_fk, ip,created,group_id) VALUES ('$update', '$uid', '$ip','$time','$group_id')") or die(mysql_error());
-            $newquery = mysql_query("SELECT M.msg_id, M.uid_fk, M.message, M.created, U.username 
+            $newquery = mysql_query("SELECT M.msg_id, M.uid_fk, M.message, M.created, U.username , U.email
                                             FROM messages M, users U 
                                                 WHERE M.uid_fk=U.uid and M.uid_fk='".mysql_real_escape_string($uid)."' 
                                                 AND M.group_id = '".mysql_real_escape_string($group_id)."'

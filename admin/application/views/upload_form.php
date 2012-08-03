@@ -1,11 +1,8 @@
-<html>
-<head>
-    
-<title>Upload Form</title>
 <?php
+    include_once 'header.php';
     include_once 'script_loader.php';
 ?>
-</head>
+
 <body>
 
      

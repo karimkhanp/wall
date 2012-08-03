@@ -29,7 +29,7 @@ $top_boxes = $box->get_box('top');
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-    <title>Version 3.1 modyfied</title>
+    <title>Dibuco Intranet</title>
 
         
        <?php
@@ -47,7 +47,7 @@ $top_boxes = $box->get_box('top');
                         <h5> <?= $top->post_title ?>  </h5>
                         <img src="./admin/<?= $top->post_image?>" alt="">
                         <p>     <?= $top->post_content ?></p>
-                        <a>     <?= $top->post_link ?></a>
+                        <a target="_blank" href="<?= $top->post_link ?>">     <?= $top->post_link ?></a>
                     </div>
                 </li>
         <? } ?>       
@@ -118,7 +118,7 @@ $top_boxes = $box->get_box('top');
                         <img src="./admin/<?= $bottom->post_image?>" alt="">
                         <h5> <?= $bottom->post_title ?>  </h5>
                         <p>  <?= $bottom->post_content ?></p>
-                        <a> <?= $bottom->post_link?></a>
+                        <a target="_blank" href="<?= $bottom->post_link ?>">  <?= $bottom->post_link?></a>
                     </div>
                 </li>
         <? } ?>       

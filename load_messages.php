@@ -8,8 +8,10 @@ foreach($updatesarray as $data)
     $message = tolink(htmlentities($data['message']));
      $time = $data['created'];
       $username = $data['username'];
+      $email = $data['email']  ;
       $face = $Wall->Gravatar($data['uid_fk']);
     $commentsarray = $Wall->Comments($msg_id);
+    ;
 ?>
 
 <script type="text/javascript"> 
@@ -31,7 +33,7 @@ $(document).ready(function(){$("#stexpand<?php echo $msg_id;?>").oembed("<?php e
 <?php
     }
 ?>
-<b><?php echo $username;?></b> <?php echo $message;?>
+<a href="mailto:<?= $email ?>"><b><?php  echo $username;?></b></a> <?php echo $message;?>
 <div class="sttime"><?php time_stamp($time);?> | <a href='#' class='commentopen' id='<?php echo $msg_id;?>' title='Comment'>Comment </a></div> 
 
 <div id="stexpandbox">

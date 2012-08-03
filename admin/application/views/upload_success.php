@@ -1,8 +1,7 @@
-<html>
-<head>
-    
-<title>Upload Form</title>
-
+<?php
+    include_once 'header.php';
+  
+?>
 </head>
 <body>
 

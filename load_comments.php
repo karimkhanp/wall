@@ -8,7 +8,7 @@ foreach($commentsarray as $cdata)
  $comment = tolink(htmlentities($cdata['comment'] ));
   $time = $cdata['created'];
    $username = $cdata['username'];
- 
+   
    $cface = $Wall->Gravatar($cdata['uid_fk']);
  ?>
 <div class="stcommentbody" id="stcommentbody<?php echo $com_id; ?>">
@@ -24,7 +24,7 @@ foreach($commentsarray as $cdata)
     }   
 
     ?>    
-<b><?php echo $username; ?></b> <?php echo $comment; ?>
+<a href="mailto:<?= $cdata['email'];?>"><b><?php echo $username; ?></b> </a><?php echo $comment; ?>
 <div class="stcommenttime"><?php time_stamp($time); ?></div> 
 </div>
 </div>

@@ -44,3 +44,4 @@
     <script src="../css/assets/js/bootstrap-typeahead.js"></script>
     <script src="../css/assets/js/application.js"></script>
     <script src="../js/less.js"></script>
+</head>
